@@ -9,8 +9,8 @@ import androidx.fragment.app.viewModels
 import app.kazy.ccamera.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
+    private val adapter = ImageAdapter()
     private val viewModel by viewModels<MainViewModel>()
-
     private lateinit var binding: FragmentMainBinding
 
     override fun onCreateView(
@@ -24,6 +24,10 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.recyclerView.adapter = adapter
         viewModel.search("tennis")
+        viewModel.images.observe(viewLifecycleOwner, { images ->
+            adapter.images = images
+        })
     }
 }

@@ -1,16 +1,21 @@
 package app.kazy.ccamera
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import app.kazy.ccamera.model.Image
+import app.kazy.ccamera.model.convert
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import timber.log.Timber
 
 class MainViewModel : ViewModel() {
     private val client: CreativeCommonsClient
+    val images: LiveData<List<Image>> get() = _images
+    private val _images: MutableLiveData<List<Image>> = MutableLiveData()
 
     init {
         val moshi = Moshi.Builder()
@@ -29,8 +34,7 @@ class MainViewModel : ViewModel() {
     fun search(word: String) {
         viewModelScope.launch {
             val searchResponse = client.searchImages(word)
-            Timber.d("size = ${searchResponse.results.size}")
+            _images.postValue(searchResponse.results.map { it.convert() })
         }
     }
-
 }
