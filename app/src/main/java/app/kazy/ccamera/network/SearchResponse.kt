@@ -1,4 +1,4 @@
-package app.kazy.ccamera
+package app.kazy.ccamera.network
 
 import com.squareup.moshi.Json
 

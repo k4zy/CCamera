@@ -1,4 +1,4 @@
-package app.kazy.ccamera
+package app.kazy.ccamera.scene.main
 
 import android.os.Bundle
 import android.view.LayoutInflater

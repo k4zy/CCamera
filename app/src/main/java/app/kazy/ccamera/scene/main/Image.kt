@@ -1,8 +1,8 @@
-package app.kazy.ccamera.model
+package app.kazy.ccamera.scene.main
 
 import android.net.Uri
 import androidx.core.net.toUri
-import app.kazy.ccamera.SearchResponse
+import app.kazy.ccamera.network.SearchResponse
 
 data class Image(
     val title: String,

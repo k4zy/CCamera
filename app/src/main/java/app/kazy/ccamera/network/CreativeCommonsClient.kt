@@ -1,4 +1,4 @@
-package app.kazy.ccamera
+package app.kazy.ccamera.network
 
 import retrofit2.http.GET
 import retrofit2.http.Headers

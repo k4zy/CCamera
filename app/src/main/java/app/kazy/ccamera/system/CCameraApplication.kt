@@ -1,6 +1,7 @@
-package app.kazy.ccamera
+package app.kazy.ccamera.system
 
 import android.app.Application
+import app.kazy.ccamera.BuildConfig
 import timber.log.Timber
 
 class CCameraApplication : Application() {

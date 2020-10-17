@@ -1,11 +1,10 @@
-package app.kazy.ccamera
+package app.kazy.ccamera.scene.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.kazy.ccamera.model.Image
-import app.kazy.ccamera.model.convert
+import app.kazy.ccamera.network.CreativeCommonsClient
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.launch
@@ -21,13 +20,10 @@ class MainViewModel : ViewModel() {
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
-
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.creativecommons.engineering/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
-
-
         client = retrofit.create(CreativeCommonsClient::class.java)
     }
 

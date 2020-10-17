@@ -1,10 +1,9 @@
-package app.kazy.ccamera
+package app.kazy.ccamera.scene.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.kazy.ccamera.databinding.ItemViewImageBinding
-import app.kazy.ccamera.model.Image
 import coil.load
 import kotlin.properties.Delegates
 
