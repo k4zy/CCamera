@@ -7,7 +7,11 @@ import app.kazy.ccamera.databinding.ItemViewImageBinding
 import coil.load
 import kotlin.properties.Delegates
 
-class ImageAdapter : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
+typealias OnClickListener = (image: Image) -> Unit
+
+class ImageAdapter(
+    private val onClickListener: OnClickListener
+) : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
     var images: List<Image> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
     }
@@ -24,6 +28,9 @@ class ImageAdapter : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val image = images[position]
         holder.binding.imageView.load(image.thumbnail)
+        holder.binding.imageView.setOnClickListener {
+            onClickListener.invoke(image)
+        }
     }
 
     override fun getItemCount(): Int = images.size
