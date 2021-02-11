@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.kazy.ccamera.databinding.ItemViewImageBinding
-import coil.load
+import com.bumptech.glide.Glide
 import kotlin.properties.Delegates
 
 typealias OnClickListener = (image: Image) -> Unit
@@ -27,7 +27,9 @@ class ImageAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val image = images[position]
-        holder.binding.imageView.load(image.thumbnail)
+        Glide.with(holder.binding.root)
+            .load(image.thumbnail)
+            .into(holder.binding.imageView)
         holder.binding.imageView.setOnClickListener {
             onClickListener.invoke(image)
         }
