@@ -57,9 +57,7 @@ class MainFragment : Fragment() {
                 e.printStackTrace()
             }
 
-            // Add the image to the system gallery
             galleryAddPic(savedImagePath)
-//            Toast.makeText(requireContext(), "IMAGE SAVED", Toast.LENGTH_LONG).show()
         }
         return savedImagePath
     }
