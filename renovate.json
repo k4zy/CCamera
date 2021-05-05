@@ -1,5 +1,253 @@
 {
-  "extends": [
-    "config:base"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "rebaseWhen": "conflicted",
+  "gradle-lite": {
+    "enabled": true
+  },
+  "enabledManagers": ["gradle-lite", "gradle-wrapper", "bundler"],
+  "packageRules": [
+    {
+      "groupName": "Kotlin",
+      "matchPackagePatterns": ["^org\\.jetbrains\\.kotlin:"]
+    },
+    {
+      "groupName": "KotlinCoroutines",
+      "matchPackagePatterns": ["^org\\.jetbrains\\.kotlinx:kotlinx-coroutines"]
+    },
+    {
+      "groupName": "GradlePlugin",
+      "matchPackageNames": ["com.android.tools.build:gradle"]
+    },
+    {
+      "groupName": "Flexbox",
+      "matchPackagePatterns": ["^com\\.google\\.android:flexbox"]
+    },
+    {
+      "groupName": "GooglePlayBase",
+      "matchPackageNames": ["com.google.android.gms:play-services-base"]
+    },
+    {
+      "groupName": "GooglePlayAds",
+      "matchPackageNames": ["com.google.android.gms:play-services-ads"]
+    },
+    {
+      "groupName": "GooglePlayAuth",
+      "matchPackageNames": ["com.google.android.gms:play-services-auth"]
+    },
+    {
+      "groupName": "Installreferrer",
+      "matchPackagePatterns": ["^com\\.android\\.installreferrer:"]
+    },
+    {
+      "groupName": "FirebaseAnalytics",
+      "matchPackageNames": ["com.google.firebase:firebase-analytics"]
+    },
+    {
+      "groupName": "FirebasePerformanceMonitoring",
+      "matchPackageNames": ["com.google.firebase:firebase-perf"]
+    },
+    {
+      "groupName": "FirebaseCrashlytics",
+      "matchPackageNames": ["com.google.firebase:firebase-crashlytics"]
+    },
+    {
+      "groupName": "RxJava",
+      "matchPackageNames": ["io.reactivex.rxjava2:rxjava"]
+    },
+    {
+      "groupName": "RxAndroid",
+      "matchPackageNames": ["io.reactivex.rxjava2:rxandroid"]
+    },
+    {
+      "groupName": "RxKotlin",
+      "matchPackageNames": ["io.reactivex.rxjava2:rxkotlin"]
+    },
+    {
+      "groupName": "RxBinding",
+      "matchPackagePatterns": ["^com\\.jakewharton\\.rxbinding3:"]
+    },
+    {
+      "groupName": "GarageClient",
+      "matchPackagePatterns": ["^com\\.cookpad\\.android:garage-client"]
+    },
+    {
+      "groupName": "Tsuruhashi",
+      "matchPackagePatterns": ["^com\\.cookpad\\.android:tsuruhashi"]
+    },
+    {
+      "groupName": "Puree",
+      "matchPackagePatterns": ["^com\\.github\\.cookpad:puree"]
+    },
+    {
+      "groupName": "Logend",
+      "matchPackageNames": ["^com\\.cookpad\\.android:logend"]
+    },
+    {
+      "groupName": "AndroidX.Lifecycle",
+      "matchPackagePatterns": ["^androidx\\.lifecycle:"]
+    },
+    {
+      "groupName": "AndroidX.Core",
+      "matchPackagePatterns": ["^androidx\\.core:"]
+    },
+    {
+      "groupName": "AndroidX.Annotation",
+      "matchPackagePatterns": ["^androidx\\.annotation"]
+    },
+    {
+      "groupName": "Fragment",
+      "matchPackagePatterns": ["^androidx\\.fragment"]
+    },
+    {
+      "groupName": "RecyclerView",
+      "matchPackagePatterns": ["^androidx\\.recyclerview"]
+    },
+    {
+      "groupName": "Material",
+      "matchPackagePatterns": ["^com\\.google\\.android\\.material"]
+    },
+    {
+      "groupName": "PagingRuntime",
+      "matchPackagePatterns": ["^androidx\\.paging:paging-runtime"]
+    },
+    {
+      "groupName": "WorkManger",
+      "matchPackagePatterns": ["^androidx\\.work"]
+    },
+    {
+      "groupName": "ConstraintLayout",
+      "matchPackagePatterns": ["^androidx\\.constraintlayout"]
+    },
+    {
+      "groupName": "ExifInterface",
+      "matchPackagePatterns": ["^androidx\\.exifinterface"]
+    },
+    {
+      "groupName": "UiAutomator",
+      "matchPackagePatterns": ["^androidx\\.test\\.uiautomator"]
+    },
+    {
+      "groupName": "AndroidX.JunitExtension",
+      "matchPackageNames": ["androidx.test.ext:junit"]
+    },
+    {
+      "groupName": "Navigation",
+      "matchPackagePatterns": ["^androidx\\.navigation"]
+    },
+    {
+      "groupName": "Room",
+      "matchPackagePatterns": ["^androidx\\.room"]
+    },
+    {
+      "groupName": "PlayCore",
+      "matchPackagePatterns": ["^com\\.google\\.android\\.play:core"]
+    },
+    {
+      "groupName": "Hyperion",
+      "matchPackagePatterns": ["^com\\.willowtreeapps\\.hyperion"]
+    },
+    {
+      "groupName": "AndroidXTestCore",
+      "matchPackagePatterns": ["^androidx\\.test\\.core"]
+    },
+    {
+      "groupName": "AndroidXTest",
+      "matchPackagePatterns": ["^androidx\\.test:"]
+    },
+    {
+      "groupName": "Espresso",
+      "matchPackagePatterns": ["^androidx\\.test\\.espresso"]
+    },
+    {
+      "groupName": "Mockito",
+      "matchPackagePatterns": ["^org\\.mockito:mockito-"]
+    },
+    {
+      "groupName": "Junit",
+      "matchPackagePatterns": ["^junit:junit:"]
+    },
+    {
+      "groupName": "Truth",
+      "matchPackagePatterns": ["^com\\.google\\.truth:"]
+    },
+    {
+      "groupName": "MockitoKotlin",
+      "matchPackagePatterns": ["^org\\.mockito\\.kotlin:mockito-kotlin:"]
+    },
+    {
+      "groupName": "Robolectric",
+      "matchPackagePatterns": ["^org\\.robolectric:robolectric:"]
+    },
+    {
+      "groupName": "Falcon",
+      "matchPackagePatterns": ["^com\\.jraska:falcon"]
+    },
+    {
+      "groupName": "Gson",
+      "matchPackagePatterns": ["^com\\.google\\.code\\.gson"]
+    },
+    {
+      "groupName": "Moshi",
+      "matchPackagePatterns": ["^com\\.squareup\\.moshi:"]
+    },
+    {
+      "groupName": "Glide",
+      "matchPackagePatterns": ["^com\\.github\\.bumptech\\.glide:"]
+    },
+    {
+      "groupName": "Blurry",
+      "matchPackagePatterns": ["^jp\\.wasabeef:blurry:"]
+    },
+    {
+      "groupName": "Dagger",
+      "matchPackagePatterns": ["^com\\.google\\.dagger:dagger"]
+    },
+    {
+      "groupName": "Flipper",
+      "matchPackagePatterns": [
+        "^com\\.facebook\\.flipper:",
+        "^com\\.facebook\\.soloader:soloader"
+      ]
+    },
+    {
+      "groupName": "OkHttp",
+      "matchPackagePatterns": ["^com\\.squareup\\.okhttp3:"]
+    },
+    {
+      "groupName": "Retrofit",
+      "matchPackagePatterns": ["^com\\.squareup\\.retrofit2:"]
+    },
+    {
+      "groupName": "Orma",
+      "matchPackagePatterns": [
+        "^com\\.github\\.maskarade\\.android\\.orma:orma"
+      ]
+    },
+    {
+      "groupName": "PermissionDispatcher",
+      "matchPackagePatterns": [
+        "^org\\.permissionsdispatcher:permissionsdispatcher"
+      ]
+    },
+    {
+      "groupName": "Otto",
+      "matchPackagePatterns": ["^com\\.squareup:otto:"]
+    },
+    {
+      "groupName": "Jsr305",
+      "matchPackagePatterns": ["^com\\.google\\.code\\.findbugs:jsr305:"]
+    },
+    {
+      "groupName": "ThreeTenABP",
+      "matchPackagePatterns": ["^com\\.jakewharton\\.threetenabp:threetenabp:"]
+    },
+    {
+      "groupName": "Timber",
+      "matchPackagePatterns": ["^com\\.jakewharton\\.timber:timber:"]
+    },
+    {
+      "groupName": "Adjust",
+      "matchPackagePatterns": ["^com\\.adjust\\.sdk:adjust-android:"]
+    }
   ]
 }
