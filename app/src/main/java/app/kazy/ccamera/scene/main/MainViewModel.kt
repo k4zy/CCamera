@@ -47,13 +47,12 @@ class MainViewModel @Inject constructor(
     private fun search(word: String) {
         viewModelScope.launch {
             val searchResponse = client.searchImages(word)
-            searchResponse.results.map { it.convert() }.let {
-                MainViewState(
-                    images = it
-                )
-            }.let {
-                _state.value = it
-            }
+            searchResponse.results.map { it.convert() }
+                .let {
+                    _state.value = MainViewState(
+                        images = it
+                    )
+                }
         }
     }
 
