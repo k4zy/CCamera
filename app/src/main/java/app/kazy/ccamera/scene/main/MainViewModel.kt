@@ -35,18 +35,16 @@ class MainViewModel @Inject constructor(
         val images: List<Image> = emptyList()
     )
 
-    private val _state = MutableStateFlow(MainViewState())
-
-    private val refreshing = MutableStateFlow(false)
-
     val state: StateFlow<MainViewState>
         get() = _state
+
+    private val _state = MutableStateFlow(MainViewState())
 
     init {
         search("tennis")
     }
 
-    fun search(word: String) {
+    private fun search(word: String) {
         viewModelScope.launch {
             val searchResponse = client.searchImages(word)
             searchResponse.results.map { it.convert() }.let {

@@ -1,4 +1,4 @@
-package app.kazy.ccamera.system
+package app.kazy.ccamera
 
 import android.app.Application
 import app.kazy.ccamera.BuildConfig
