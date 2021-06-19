@@ -1,6 +1,6 @@
 package app.kazy.ccamera
 
-import app.kazy.ccamera.network.CCClient
+import app.kazy.ccamera.network.CCameraClient
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -29,7 +29,7 @@ class CCameraModule {
 
     @Provides
     @Singleton
-    fun provideCCClient(retrofit: Retrofit): CCClient =
-        retrofit.create(CCClient::class.java)
+    fun provideCCClient(retrofit: Retrofit): CCameraClient =
+        retrofit.create(CCameraClient::class.java)
 
 }

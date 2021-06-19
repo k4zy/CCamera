@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
 
-interface CCClient {
+interface CCameraClient {
     @Headers("Authorization: Bearer ${BuildConfig.API_KEY}")
     @GET("/v1/images")
     suspend fun searchImages(@Query("q") searchWord: String): SearchResponse

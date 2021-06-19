@@ -9,11 +9,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.kazy.ccamera.network.CCClient
+import app.kazy.ccamera.network.CCameraClient
 import com.bumptech.glide.Glide
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -22,27 +25,37 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.util.concurrent.Future
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
-    private val client: CCClient
-    val images: LiveData<List<Image>> get() = _images
-    private val _images: MutableLiveData<List<Image>> = MutableLiveData()
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val client: CCameraClient
+) : ViewModel() {
+    data class MainViewState(
+        val images: List<Image> = emptyList()
+    )
+
+    private val _state = MutableStateFlow(MainViewState())
+
+    private val refreshing = MutableStateFlow(false)
+
+    val state: StateFlow<MainViewState>
+        get() = _state
 
     init {
-        val moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.creativecommons.engineering/")
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .build()
-        client = retrofit.create(CCClient::class.java)
+        search("tennis")
     }
 
     fun search(word: String) {
         viewModelScope.launch {
             val searchResponse = client.searchImages(word)
-            _images.postValue(searchResponse.results.map { it.convert() })
+            searchResponse.results.map { it.convert() }.let {
+                MainViewState(
+                    images = it
+                )
+            }.let {
+                _state.value = it
+            }
         }
     }
 
@@ -55,6 +68,7 @@ class MainViewModel : ViewModel() {
 
     fun saveImage(context: Context, uri: Uri) = viewModelScope.launch {
         val bitmap = loadBitmap(context, uri)
+
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         val fileName = File(uri.path).name
         saveImage(context, fileName, bitmap)
