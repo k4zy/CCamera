@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.kazy.ccamera.network.CreativeCommonsClient
+import app.kazy.ccamera.network.CCClient
 import com.bumptech.glide.Glide
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -24,7 +24,7 @@ import java.io.OutputStream
 import java.util.concurrent.Future
 
 class MainViewModel : ViewModel() {
-    private val client: CreativeCommonsClient
+    private val client: CCClient
     val images: LiveData<List<Image>> get() = _images
     private val _images: MutableLiveData<List<Image>> = MutableLiveData()
 
@@ -36,7 +36,7 @@ class MainViewModel : ViewModel() {
             .baseUrl("https://api.creativecommons.engineering/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
-        client = retrofit.create(CreativeCommonsClient::class.java)
+        client = retrofit.create(CCClient::class.java)
     }
 
     fun search(word: String) {
