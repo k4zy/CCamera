@@ -13,6 +13,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
@@ -34,7 +35,9 @@ fun MainScreen(viewModel: MainViewModel) {
     val viewState by viewModel.state.collectAsState()
 
 //    val photos = viewModel.imagePagination().collectAsLazyPagingItems()
-    Column() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         var text by remember { mutableStateOf("") }
         val focusManager = LocalFocusManager.current
 
@@ -56,17 +59,24 @@ fun MainScreen(viewModel: MainViewModel) {
                 .fillMaxWidth()
         )
         LazyVerticalGrid(
-            cells = GridCells.Adaptive(minSize = 128.dp),
-            contentPadding = PaddingValues(top = 10.dp, bottom = 10.dp),
+            cells = GridCells.Adaptive(minSize = 120.dp),
+            contentPadding = PaddingValues(top = 10.dp, bottom = 10.dp, start = 4.dp, end = 4.dp),
         ) {
             items(viewState.images) { photo ->
-                Column {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                     Image(
-                        painter = rememberGlidePainter(photo.thumbnail),
+                        painter = rememberGlidePainter(
+                            request = photo.thumbnail,
+                            requestBuilder = {
+                                override(300)
+                            }
+                        ),
                         contentDescription = photo.title,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .size(128.dp)
+                            .size(120.dp)
                             .clip(RoundedCornerShape(4.dp))
                     )
                     Text(

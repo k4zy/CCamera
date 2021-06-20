@@ -11,6 +11,7 @@ interface CCameraClient {
     suspend fun searchImages(
         @Query("q") searchWord: String,
         @Query("page") page: Int = 1,
-        @Query("page_size") pageSize: Int = 30
+        @Query("page_size") pageSize: Int = 50,
+        @Query("size") size: String = "small,medium,large"
     ): SearchResponse
 }
