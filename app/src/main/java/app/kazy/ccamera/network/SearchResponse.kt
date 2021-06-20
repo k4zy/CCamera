@@ -2,7 +2,6 @@ package app.kazy.ccamera.network
 
 import com.squareup.moshi.Json
 
-
 data class SearchResponse(
     @Json(name = "result_count")
     val resultCount: Int,

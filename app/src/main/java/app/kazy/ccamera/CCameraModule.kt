@@ -31,5 +31,4 @@ class CCameraModule {
     @Singleton
     fun provideCCClient(retrofit: Retrofit): CCameraClient =
         retrofit.create(CCameraClient::class.java)
-
 }

@@ -1,7 +1,6 @@
 package app.kazy.ccamera
 
 import android.app.Application
-import app.kazy.ccamera.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
