@@ -48,7 +48,7 @@ class MainViewModel @Inject constructor(
         search("tennis")
     }
 
-    private fun search(word: String) {
+    fun search(word: String) {
         viewModelScope.launch {
             val searchResponse = client.searchImages(word)
             searchResponse.results.map { it.convert() }

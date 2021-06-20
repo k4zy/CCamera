@@ -10,7 +10,7 @@ import app.kazy.ccamera.scene.main.MainViewModel
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CCameraApp() {
-    MaterialTheme {
+    MaterialTheme() {
         val mainViewModel = hiltViewModel<MainViewModel>()
         MainScreen(mainViewModel)
     }

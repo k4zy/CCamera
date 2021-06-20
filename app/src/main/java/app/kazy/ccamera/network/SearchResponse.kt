@@ -23,7 +23,7 @@ data class SearchResponse(
         @Json(name = "creator_url")
         val creatorUrl: String,
         @Json(name = "tags")
-        val tags: List<Tag>,
+        val tags: List<Tag>?,
         @Json(name = "url")
         val url: String,
         @Json(name = "thumbnail")
