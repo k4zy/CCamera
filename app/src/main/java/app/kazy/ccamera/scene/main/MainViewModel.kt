@@ -45,7 +45,7 @@ class MainViewModel @Inject constructor(
     private val _state = MutableStateFlow(MainViewState())
 
     init {
-        search("tennis")
+        search("food")
     }
 
     fun search(word: String) {

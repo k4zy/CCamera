@@ -3,6 +3,7 @@ package app.kazy.ccamera.scene.main
 import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
@@ -18,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextLayoutInput
 import androidx.compose.ui.text.input.ImeAction
@@ -33,12 +35,10 @@ import timber.log.Timber
 @Composable
 fun MainScreen(viewModel: MainViewModel) {
     val viewState by viewModel.state.collectAsState()
-
-//    val photos = viewModel.imagePagination().collectAsLazyPagingItems()
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        var text by remember { mutableStateOf("") }
+        var text by remember { mutableStateOf("food") }
         val focusManager = LocalFocusManager.current
 
         OutlinedTextField(
@@ -62,38 +62,9 @@ fun MainScreen(viewModel: MainViewModel) {
             cells = GridCells.Adaptive(minSize = 120.dp),
             contentPadding = PaddingValues(top = 10.dp, bottom = 10.dp, start = 4.dp, end = 4.dp),
         ) {
-            items(viewState.images) { photo ->
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(
-                        painter = rememberGlidePainter(
-                            request = photo.thumbnail,
-                            requestBuilder = {
-                                override(300)
-                            }
-                        ),
-                        contentDescription = photo.title,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .size(120.dp)
-                            .clip(RoundedCornerShape(4.dp))
-                    )
-                    Text(
-                        text = photo.title,
-                        fontSize = 12.sp,
-                        maxLines = 3,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.padding(
-                            start = 8.dp,
-                            end = 8.dp,
-                            top = 4.dp,
-                            bottom = 4.dp
-                        )
-                    )
-                }
+            items(viewState.images) { image ->
+                ImageCell(viewModel = viewModel, image = image)
             }
         }
     }
-
 }
