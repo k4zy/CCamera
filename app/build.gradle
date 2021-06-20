@@ -77,6 +77,9 @@ dependencies {
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-alpha03'
     implementation "com.google.accompanist:accompanist-glide:0.15.0"
 
+    // Paging
+    implementation "androidx.paging:paging-compose:1.0.0-alpha10"
+
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"

@@ -9,12 +9,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import app.kazy.ccamera.network.CCameraClient
 import com.bumptech.glide.Glide
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -54,6 +58,12 @@ class MainViewModel @Inject constructor(
                     )
                 }
         }
+    }
+
+    fun imagePagination(): Flow<PagingData<Image>> {
+        return Pager(PagingConfig(pageSize = 20)) {
+            CCameraSource(client = client)
+        }.flow
     }
 
     @Suppress("BlockingMethodInNonBlockingContext")
