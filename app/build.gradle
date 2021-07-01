@@ -75,7 +75,7 @@ dependencies {
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
     implementation "androidx.compose.animation:animation:$compose_version"
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-alpha03'
-    implementation "com.google.accompanist:accompanist-glide:0.12.0"
+    implementation "com.google.accompanist:accompanist-glide:0.13.0"
 
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
