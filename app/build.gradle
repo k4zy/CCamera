@@ -86,7 +86,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-glide:0.15.0"
 
     // Paging
-    implementation "androidx.paging:paging-compose:1.0.0-alpha10"
+    implementation "androidx.paging:paging-compose:1.0.0-alpha12"
 
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
